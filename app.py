@@ -27,7 +27,6 @@ def wordle():
     if request.method == "POST":
         chr_states = []
         word = request.form.get("word")
-        print(C.ANSWER)
         if len(word) == 5 and word.upper() in C.VALID_WORDS and C.WIN == False:
             for i in range(len(word)):
                 if word[i] == C.ANSWER[i]:
@@ -45,7 +44,6 @@ def wordle():
         if word.upper() == C.ANSWER.upper():
             C.WIN = True
 
-        print(chr_states)
     else:
         C = Const()
 
@@ -57,11 +55,6 @@ def wordle():
         attemps=C.ATTEMPTS,
         answer=C.ANSWER.upper(),
     )
-
-
-@app.route("/words")
-def words():
-    return render_template("words.html", words=C.USER_WORDS)
 
 
 @app.route("/tictactoe-home")
@@ -110,8 +103,6 @@ def ttt_ai():
             elif winner == "O":
                 p2_score += 1
 
-        print(ttt.get_grid_state(board))
-
         return render_template(
             "tictactoe/ai.html",
             board=ttt.get_grid_state(board),
@@ -137,8 +128,6 @@ def ttt_multi():
             p2_score=p2_score,
         )
     elif request.method == "POST":
-        print(ttt.get_grid_state(board))
-
         move = request.form.get("grid_el")
         row, col = move[0], move[1]
 
