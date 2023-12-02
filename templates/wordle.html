@@ -1,0 +1,130 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>Wordle</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/wordle.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='assets/wordle/wordle.ico') }}" type="image/x-icon">
+{% endblock %}
+
+
+{% block body %}
+<header>
+    <h1>Wordle</h1>
+    <div class="button-container">
+        <form action="/wordle" method="get">
+            <button type="submit">
+                <img src="{{ url_for('static', filename='assets//wordle//reset.png') }}" alt="Reload Button" srcset="">
+            </button>
+        </form>
+        <form action="/" method="get">
+            <button type="submit">
+                <img src="{{url_for('static', filename='assets//wordle//home.png')}}" alt="Home Page Button" srcset="">
+            </button>
+        </form>
+    </div>
+</header>
+
+<!-- <div class="main-grid-overlay"></div> -->
+<table class="grid-overlay">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<main id="main-game-container">
+    <div>
+        <div>
+            {% for word in user_words %}
+            <section class="word-row">
+                {% for chr in word %}
+                {% if chr[1] == 2 %}
+                <div style="background-color: #538d4e;">{{ chr[0].upper()}}</div>
+                {% elif chr[1] == 1 %}
+                <div style="background-color: #b59f3b;">{{ chr[0].upper() }}</div>
+                {% else %}
+                <div style="background-color: #3a3a3c;">{{ chr[0].upper() }}</div>
+                {% endif %}
+                {% endfor %}
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if won == False and attemps != 0 %}
+
+    <form action="/wordle" method="post" id="word-form">
+        <input name="word" type="text" autofocus autocomplete="off" placeholder="Enter Word" pattern="\b[A-Za-z]{5}\b"
+            required>
+    </form>
+
+    {% else %}
+
+    <form action="/wordle" method="post" id="word-form">
+        <input name="word" type="text" autofocus autocomplete="off" placeholder="Enter Word" pattern="\b[A-Za-z]{5}\b"
+            required disabled>
+    </form>
+
+    {% endif %}
+
+    {% if valid_word == False and won == False %}
+
+    <div class="alert">
+        Please Enter A Valid Word
+        <span style="font-size: 12px;">(Enter a word to continue)</span>
+    </div>
+
+    {% elif won == False and attemps == 0 %}
+    <div class="alert">
+        YOU LOST!
+        <span>The word was {{ answer }}</span>
+    </div>
+
+    {% elif won == True %}
+    <div class="alert">
+        YOU WON!
+        <span>The was was {{ answer }}</span>
+    </div>
+
+    {% endif %}
+</main>
+
+{% endblock %}

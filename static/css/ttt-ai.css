@@ -1,0 +1,214 @@
+/* #1e3640 - btn */
+/* rgb(242, 178, 54) */
+/* rgb(48, 196, 192) */
+
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap");
+
+body {
+    background-color: #121213;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inconsolata", monospace;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 65px;
+}
+
+.button-container > form {
+    width: 30px;
+    aspect-ratio: 1;
+}
+
+.button-container > form > button {
+    cursor: pointer;
+    border: 1px solid #b18597;
+    outline: none;
+    border-radius: 0.75em;
+    aspect-ratio: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff0f0;
+    transform-style: preserve-3d;
+    transition: 0.15s cubic-bezier(0, 0, 0.6, 1);
+}
+
+.button-container > form > button::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: #f9c4d2;
+    transform: translate3d(0, 0.75em, -1em);
+    transition: 0.15s cubic-bezier(0, 0, 0.6, 1);
+}
+
+.button-container > form > button:hover {
+    background: #ffe9e9;
+    transform: translate(0, 0.25em);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+#reset {
+    height: 100%;
+    aspect-ratio: 1/1;
+}
+
+#top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 35px;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+#top-container > form {
+    width: 35px;
+    aspect-ratio: 1;
+}
+
+#top-container > form > button {
+    background-color: #30c4c0;
+    box-shadow: 0px 5px 0px 0px rgb(35, 133, 131);
+    border-radius: 10px;
+}
+
+#top-container > form > button:hover {
+    background-color: rgb(46, 178, 174);
+    box-shadow: 0 5px 0 0 rgb(31, 115, 114);
+    transition: all 300ms;
+}
+
+#turn-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#turn-container > img {
+    aspect-ratio: 1/1;
+    width: 25px;
+}
+
+span {
+    font-size: 30px;
+    padding-left: 5px;
+}
+
+button {
+    background-color: #121213;
+    border: none;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 85px);
+    grid-template-rows: repeat(3, 85px);
+    gap: 5px;
+    background-color: beige;
+}
+
+#grid-container > form > button {
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+#bottom-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+}
+
+#p1-info,
+#p2-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 5px 15px 5px 15px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+#p1-info > p:nth-child(2),
+#p2-info > p:nth-child(2) {
+    font-size: 2em;
+}
+
+#p1-info {
+    background-color: rgb(48, 196, 192);
+}
+
+#p2-info {
+    background-color: #f2b236;
+}
+
+.hidden {
+    display: none;
+}
+
+.alert {
+    color: var(--text-colour);
+    font-weight: 700;
+    font-size: 24px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    min-width: 285px;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 32px 15px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 9px;
+    background: #3c3636;
+    box-shadow: 0 0 100px rgb(216 216 216 / 30%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert > span {
+    text-align: center;
+    font-size: 14px;
+    padding-top: 5px;
+}

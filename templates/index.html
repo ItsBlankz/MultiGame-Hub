@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>Home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='assets/home-page.ico') }}" type="image/x-icon">
+{% endblock %}
+
+{% block body %}
+
+<header>
+    <h1>
+        MultiGame Hub
+    </h1>
+</header>
+<main class="grid-container">
+    <div class="games-container">
+        <div class="game-item-card">
+            <div class="img-container">
+                <img src="{{ url_for('static', filename='assets/wordle/wordlegame.png')}}" alt="">
+            </div>
+            <div class="text-container">
+                <h3>Wordle</h3>
+                <p>Guess the 5 letter word</p>
+                <form action="/wordle">
+                    <button type="submit">
+                        Play
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="games-container">
+        <div class="game-item-card">
+            <div class="img-container">
+                <img src="{{ url_for('static', filename='assets/ttt/tic-tac-toe.png')}}" alt="">
+            </div>
+            <div class="text-container">
+                <h3>Tic-Tac-Toe</h3>
+                <p>CLassic 2 Player Tic-Tac-Toe</p>
+                <form action="/tictactoe-home">
+                    <button type="submit">
+                        Play
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

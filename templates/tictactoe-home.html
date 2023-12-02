@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename = 'css/homepage.css')}}">
+{% endblock %}
+{% block body %}
+<header>
+    <h1>
+        Tic-Tac-Toe
+    </h1>
+</header>
+<main class="grid-container">
+    <div class="games-container">
+        <div class="game-item-card">
+            <div class="img-container">
+                <img src="{{ url_for('static', filename='assets/ttt/AI-logo.png')}}" alt="">
+            </div>
+            <div class="text-container">
+                <h3>AI</h3>
+                <p>Play against an AI</p>
+                <form action="/tictactoe/ai">
+                    <button type="submit">
+                        Play
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="games-container">
+        <div class="game-item-card">
+            <div class="img-container">
+                <img src="{{ url_for('static', filename='assets/ttt/VS-logo.png')}}" alt="">
+            </div>
+            <div class="text-container">
+                <h3>Multiplayer</h3>
+                <p>Play with your friends</p>
+                <form action="/tictactoe/multiplayer">
+                    <button type="submit">
+                        Play
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

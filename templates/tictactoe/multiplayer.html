@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>Tic-Tac-Toe Multiplayer</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css//ttt-ai.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename = 'assets//ttt//tic-tac-toe-icon.png')}}"
+    type="image/x-icon">
+{% endblock %}
+
+{% block body %}
+<main>
+    <h1>Tic-Tac-Toe</h1>
+    <div id="top-container">
+        <div id="turn-container">
+            {% if player == "X" %}
+            <img src="{{url_for('static', filename='assets/ttt/cross.png')}}" alt="">
+            {% else %}
+            <img src="{{url_for('static', filename='assets/ttt/round.png')}}" alt="">
+            {% endif %}
+            <span>'s Turn</span>
+        </div>
+        <div class="button-container">
+            <form action="/" method="get">
+                <button type="submit">
+                    <img src="{{url_for('static', filename='assets//wordle//home.png')}}" alt="Home Page Button"
+                        srcset="">
+                </button>
+            </form>
+            <form action="/tictactoe/multiplayer">
+                <button type="submit">
+                    <img src="{{ url_for('static', filename='assets//wordle//reset.png') }}" alt="" srcset="" />
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="grid-container">
+        {% for grid_el in board %}
+        <form action="/tictactoe/multiplayer" method="post">
+            <button type="submit" name="grid_el" value="{{grid_el[0] + grid_el[1]}}" {{"disabled" if board[grid_el]!=" "
+                }}>
+                {% if board[grid_el] == "X" %}
+                <img src="{{url_for('static', filename='assets/ttt/cross.png')}}" alt="">
+                {% elif board[grid_el] == "O" %}
+                <img src="{{url_for('static', filename='assets/ttt/round.png')}}" alt="">
+                {% else %}
+
+                {% endif %}
+            </button>
+        </form>
+        {% endfor %}
+    </div>
+
+    {% if winner == "X" %}
+    <div class="alert" style="color: #22d7d2;">
+        Player 1
+        <span>Won the Game</span>
+    </div>
+    {% elif winner == "O" %}
+    <div class="alert" style="color: #f2b236;">
+        Player 2
+        <span>Won the Game</span>
+    </div>
+    {% elif winner == "tie" %}
+    <div class="alert" style="color: white;">
+        The Game is a Tie
+    </div>
+    {% endif %}
+
+    <div id="bottom-container">
+        <div id="p1-info">
+            <p>Player 1 (X)</p>
+            <p id="p1-score">{{p1_score}}</p>
+        </div>
+        <div id="p2-info">
+            <p>Player 2 (O)</p>
+            <p id="p2-score">{{p2_score }}</p>
+        </div>
+    </div>
+</main>
+{% endblock %}
